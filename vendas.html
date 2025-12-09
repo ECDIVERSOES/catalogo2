@@ -1,153 +1,181 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8"> <!-- Certifique-se de que o charset é UTF-8 -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alugue seu Equipamento</title>
-    <!-- Inclua o Font Awesome -->
+    <title>Araujo Diversões - Aluguel e Serviços</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Reset básico para garantir consistência */
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Estilos globais */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f4f4f4;
-            padding: 20px;
+            padding: 10px 10px 60px; /* Padding de 60px CRÍTICO para liberar espaço para o botão fixo */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; 
         }
+        
+        /* H1 - Margem Mínima */
         h1 {
-            margin-top: 20px;
+            margin: 8px 0 5px; 
             color: #333;
-            font-size: 24px;
+            font-size: 24px; 
         }
+        
+        /* Estilos de Texto - Margens Verticais Minimizadas */
         p {
-            color: #666;
-            font-size: 16px;
-            margin: 10px 0;
+            margin: 3px 0; /* Reduzido para o mínimo */
+            line-height: 1.25;
+            font-size: 16px; 
+            color: #444;
+            padding: 0 10px;
         }
+
+        .chamada-principal {
+            color: #d9534f; 
+            font-weight: bold;
+        }
+
+        .chamada-servico {
+            color: #5cb85c; 
+            font-weight: bold;
+            margin-top: 8px; /* Espaçamento essencial */
+        }
+        
+        .chamada-contato {
+             font-weight: 600;
+             margin-top: 5px;
+             margin-bottom: 5px;
+        }
+
+
+        /* FOCO NA IMAGEM - Altura Reduzida */
         .imagem-produto {
-            margin: 10px auto;
-            max-width: 100%;
+            margin: 8px auto; 
+            max-width: 90%; 
+            max-height: 25vh; /* REDUÇÃO CRÍTICA para liberar espaço para o texto e botões */
+            width: auto;
             height: auto;
-            border-radius: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+            object-fit: contain; 
         }
 
-
+        /* ------------------------------------------- */
+        /* ÍCONES CIRCULARES (SOCIAL/WHATSAPP) */
+        /* ------------------------------------------- */
         .botoes-container {
             display: flex;
-            flex-direction: column; /* Botões em coluna para smartphones */
-            gap: 15px; /* Espaço entre os botões */
-            margin: 20px 0;
+            flex-direction: row; 
+            justify-content: center; 
+            gap: 20px; 
+            margin: 10px 0 5px; /* Margem reduzida */
+            width: 100%; 
         }
-        .botao-destaque, .botao-instagram, .botao-facebook {
+        
+        .botao-circle {
+            width: 50px; /* Tamanho reduzido para caber mais */
+            height: 50px;
+            border-radius: 50%; 
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Alinha o conteúdo à esquerda */
-            padding: 15px 30px;
+            justify-content: center;
             color: white;
             text-decoration: none;
-            font-size: 18px;
-            border-radius: 5px;
-            text-align: left; /* Alinha o texto à esquerda */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-        .botao-destaque {
-            background-color: #28a745; /* Verde para WhatsApp */
+        
+        .botao-circle i {
+            font-size: 22px; 
+            margin: 0; 
         }
-        .botao-destaque:hover {
-            background-color: #218838;
-        }
-        .botao-instagram {
-            background-color: #E4405F; /* Rosa para Instagram */
-        }
-        .botao-instagram:hover {
-            background-color: #D32A50;
-        }
-        .botao-facebook {
-            background-color: #1877F2; /* Azul para Facebook */
-        }
-        .botao-facebook:hover {
-            background-color: #1466C2;
-        }
+
+        /* Cores (mantidas) */
+        .circle-whatsapp { background-color: #28a745; }
+        .circle-instagram { background-color: #E4405F; }
+        .circle-facebook { background-color: #1877F2; }
+
+        /* ------------------------------------------- */
+        /* BOTÃO VOLTAR FIXO NO RODAPÉ (SOLUÇÃO FINAL) */
+        /* ------------------------------------------- */
         .botao-voltar {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            padding: 10px 20px;
+            position: fixed; /* GARANTE VISIBILIDADE */
+            bottom: 0; /* Ancorado na parte inferior */
+            left: 0;
+            width: 100%; /* Ocupa a largura total */
+            padding: 15px 0;
             background-color: #007bff;
             color: white;
             text-decoration: none;
-            font-size: 14px;
-            border-radius: 5px;
+            font-size: 16px; 
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+            z-index: 100;
         }
         .botao-voltar:hover {
             background-color: #0056b3;
         }
-
-        /* Ajustes para telas maiores (opcional) */
-        @media (min-width: 600px) {
-            .botoes-container {
-                flex-direction: row; /* Botões lado a lado em telas maiores */
-                justify-content: center;
-            }
-            .botao-destaque, .botao-instagram, .botao-facebook {
-                width: auto;
-            }
-        }
-
-        /* Estilo para os ícones */
-        .botao-destaque i, .botao-instagram i, .botao-facebook i {
-            margin-right: 15px; /* Espaço entre o ícone e o texto */
-            font-size: 24px; /* Tamanho maior dos ícones */
+        .botao-voltar i {
+            margin-right: 10px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <h1>Araújo Diversões</h1>
-    <p>Oferecemos venda, montagem, manutenção e locação de karaokê 3x1 para festas e eventos. Entre em contato para um orçamento sem compromisso! Aceitamos cartão de crédito., siga-nos no Instagram ou curta nossa p&aacute;gina no Facebook!</p>
+    
+    <h1>ARAUJO DIVERSÕES</h1>
+    
+    <p class="chamada-principal">
+        **Pronto para a festa?** Alugue seu equipamento agora!
+    </p>
 
-    <!-- Espaço para a imagem do produto -->
-    <img src="imagens/vendas.jpg" alt="Imagem do Produto" class="imagem-produto">
+    <img src="imagens/vendas.jpg" alt="Aluguel de Equipamentos e Manutenção de Máquinas de Karaokê" class="imagem-produto">
 
-    <!-- Container para os botões WhatsApp, Instagram e Facebook -->
+    <p class="chamada-servico">
+        <i class="fas fa-tools" style="margin-right: 5px;"></i> **SERVIÇOS ESPECIALIZADOS:** Máquina de Karaokê precisa de um upgrade? Realizamos **manutenção e atualização** para que a música nunca pare.
+    </p>
+    
+    <p class="chamada-contato">
+        📞 **ORÇAMENTO RÁPIDO via WhatsApp!** Clique no ícone abaixo e fale conosco.
+    </p>
+    
     <div class="botoes-container">
-        <!-- Botão "Fale conosco no WhatsApp" -->
-        <a href="https://wa.me/5521987550672?text=Ol&aacute;! Tenho interesse em alugar seus produtos. Aguardo seu retorno. Obrigado(a)!" class="botao-destaque">
-            <i class="fab fa-whatsapp"></i> <!-- Ícone do WhatsApp -->
-            Fale conosco no WhatsApp
+        <a href="https://wa.me/5521987550672?text=Ol&aacute;! Tenho interesse em alugar seus produtos. Aguardo seu retorno. Obrigado(a)!" class="botao-circle circle-whatsapp" title="Orçamento Rápido via WhatsApp">
+            <i class="fab fa-whatsapp"></i>
         </a>
 
-        <!-- Botão "Siga-nos no Instagram" -->
-        <a href="https://www.instagram.com/gerossantos?utm_source=qr&igsh=MW84cTl1bDJrOG14dQ==" class="botao-instagram">
-            <i class="fab fa-instagram"></i> <!-- Ícone do Instagram -->
-            Siga-nos no Instagram
+        <a href="https://www.instagram.com/gerossantos?utm_source=qr&igsh=MW84cTl1bDJrOG14dQ==" class="botao-circle circle-instagram" title="Siga-nos no Instagram">
+            <i class="fab fa-instagram"></i>
         </a>
 
-        <!-- Botão "Curta nossa página no Facebook" -->
-        <a href="https://www.facebook.com/share/1UEAcLTSWF/" class="botao-facebook">
-            <i class="fab fa-facebook"></i> <!-- Ícone do Facebook -->
-            Curta nossa página no Facebook
+        <a href="https://www.facebook.com/share/1UEAcLTSWF/" class="botao-circle circle-facebook" title="Curta nossa página no Facebook">
+            <i class="fab fa-facebook-f"></i>
         </a>
     </div>
+    
+    <p class="chamada-contato" style="margin-top: 5px; margin-bottom: 5px;">
+        Siga-nos no **Instagram** e curta nossa página no **Facebook** para ver novidades e promoções!
+    </p>
 
-    <!-- Botão "Voltar" -->
-    <a href="index.html" class="botao-voltar">Voltar para P&aacute;gina Principal</a>
+    <a href="index.html" class="botao-voltar">
+        <i class="fas fa-arrow-left"></i> Voltar para Página Principal
+    </a>
 
     <script>
-	<!-- Script para desabilitar a rolagem no celular -->
-	document.addEventListener('touchmove', function(event) {
-            event.preventDefault(); // Impede o comportamento padrão de rolagem
-        }, { passive: false }); // Define como não passivo para permitir a prevenção de padrão
-	
-	
-	
-	
-      
+        // Script para desabilitar a rolagem (mantido)
+        document.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+        }, { passive: false });
     </script>
 </body>
 </html>
